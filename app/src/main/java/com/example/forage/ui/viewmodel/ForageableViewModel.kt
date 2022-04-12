@@ -30,7 +30,7 @@ class ForageableViewModel(
     private val forageableDao: ForageableDao
 ): ViewModel() {
 
-    var forageables: LiveData<List<Forageable>> = forageableDao.getForageables().asLiveData()
+    var allForageables: LiveData<List<Forageable>> = forageableDao.getForageables().asLiveData()
 
     fun getForageable(id: Long): LiveData<Forageable> {
         return forageableDao.getForageable(id)
@@ -86,7 +86,7 @@ class ForageableViewModel(
     }
 }
 
-class ViewModelFactory(private val dao: ForageableDao): ViewModelProvider.Factory {
+class ForageableViewModelFactory(private val dao: ForageableDao): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ForageableViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
